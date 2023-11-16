@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="data.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="typer">
+                <span class="typing"></span>
+                <span class="cursor" hidden></span>
+            </div>
+        </div>
+        <div class="right">
+            <div class="clock">
+                <div class="clock-face">
+                    <div class="hand seconds"></div>
+                    <div class="hand minutes"></div>
+                    <div class="hand hours"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+    <script>
+        const clock = new Clock('.clock');
+        const typer = new Typer(tipStrs,'.typer')
+    </script>
+</body>
+</html>

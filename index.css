@@ -1,0 +1,148 @@
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.container {
+    width          : 100%;
+    height         : 100vh;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    background     : #018ded url(images/img0.jpg);
+    background-size: cover;
+    position       : relative;
+}
+
+.left {
+    width          : 100%;
+    height         : 100vh;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+
+}
+
+.left .typer {
+    width       : 100%;
+    font-size   : 3rem;
+    color       : #FFF;
+    padding-left: 1.5rem;
+    display     : flex;
+    flex-flow   : row wrap;
+    align-items : center;
+}
+
+.typer .cursor {
+    display         : inline-block;
+    margin-left     : 3px;
+    height          : 3rem;
+    line-height     : 3rem;
+    width           : 3px;
+    background-color: #000;
+    animation       : blink 1s infinite;
+
+    /* align-self: center; */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0
+    }
+
+    40% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+[hidden]{
+    visibility: hidden;
+}
+
+.right {
+    position       : absolute;
+    top            : 0;
+    right          : 0;
+    width          : 45rem;
+    height         : 100vh;
+    display        : flex;
+    justify-content: flex-start;
+    align-items    : flex-end;
+    flex-direction : column;
+    padding        : 30px;
+
+}
+
+.clock {
+    width          : 350px;
+    height         : 350px;
+    border         : 20px solid #FFF;
+    border-radius  : 50%;
+    /* opacity     : .5; */
+    background     : url(https://picsum.photos/300);
+    background-size: cover;
+    box-shadow     : 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -3px -3px 10px rgba(255, 255, 255, 1),
+        inset 3px 3px 10px rgba(0, 0, 0, 1);
+}
+
+.clock-face {
+    position : relative;
+    width    : 100%;
+    height   : 100%;
+    transform: translateY(-3px);
+}
+
+.hand {
+    width                     : 50%;
+    /* height                 : 6px; */
+    background                : #000;
+    position                  : absolute;
+    top                       : 50%;
+    right                     : 50%;
+    opacity                   : 1;
+    transform-origin          : 100%;
+    transform                 : rotate(90deg);
+    transition                : all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    border-radius             : 30% 0 0 30%;
+    box-shadow                : 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.hand.hours {
+    width : 35%;
+    height: 10px;
+    z-index: 8;
+}
+
+.hand.minutes {
+    width    : 40%;
+    height   : 6px;
+    z-index  : 9;
+    transform: rotate(145deg);
+}
+
+.hand.seconds {
+    width     : 45%;
+    height    : 3px;
+    background: #F40;
+    z-index   : 10;
+}
