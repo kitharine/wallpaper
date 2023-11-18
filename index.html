@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <script src="data.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <div class="left">
@@ -30,8 +32,43 @@
 
     <script src="index.js"></script>
     <script>
+        const timeOfAlert = 30 //分钟
+        const doms = {
+            typing:document.querySelector('.typing')
+        }
         const clock = new Clock('.clock');
-        const typer = new Typer(tipStrs,'.typer')
+        
+        let urls = 'data.json'
+        let tipData = {}
+        let promise = fetch(urls)
+            .then(res => {
+                if (res.ok) { return res.json() }
+                else { return {} }
+            })
+        promise = promise.then(data => {
+            tipData = data
+            new Typer(tipData.normal,'.typer')
+        }).catch(err => { console.log(err); })
+        // console.log(promise);
+
+//Timer 30分钟_提示休息
+        const timerOf30 =function(delay) {
+            delay = delay * 60 * 1000;
+            let i=0
+            return setInterval(() =>{
+                // alert('超过30分钟了')
+                let data = i>=0?i>=1?i>2?tipData.fatal:tipData.danger:tipData.warn : tipData.normal
+                new Typer(data,'.typer')
+                i++
+                if(i>2){
+                    doms.typing.classList.add('fatal')
+                }
+            },delay);
+            // return timer;
+        } 
+        let t = timerOf30(timeOfAlert)
+        
     </script>
 </body>
+
 </html>
