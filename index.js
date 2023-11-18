@@ -52,10 +52,15 @@ class Clock {
 
 class Typer{
     constructor(data,selector){
-        this.data = data;
-        this.el = document.querySelector(selector);
-        this.startIndex = Math.floor(Math.random() * this.data.length);
-        this.init()
+        if(Typer.instance){
+            Typer.instance.data = data;
+            console.log(Typer.instance);
+            return Typer.instance;}
+            this.data = data;
+            this.el = document.querySelector(selector);
+            this.startIndex = Math.floor(Math.random() * this.data.length);
+            this.init()
+            console.log(this);
     }
     get currentStr(){
         if(Typer.instance){
@@ -100,7 +105,7 @@ class Typer{
                 }else{
                     typeTarget.innerHTML = str.substring(0, index--);
                 }
-            },50);
+            },30);
         },1000)
     }
 }
