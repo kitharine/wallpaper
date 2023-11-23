@@ -2,12 +2,12 @@
     margin    : 0;
     padding   : 0;
     box-sizing: border-box;
-    opacity    :0;
+
 }
 
 html {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+    opacity    :0;
 }
 
 .container {
