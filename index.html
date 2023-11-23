@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="data.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="typer">
+                <span class="typing"></span>
+                <span class="cursor" hidden></span>
+            </div>
+        </div>
+        <div class="right">
+            <div class="clock">
+                <div class="clock-face">
+                    <div class="hand seconds"></div>
+                    <div class="hand minutes"></div>
+                    <div class="hand hours"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+    <script>
+        const timeOfAlert = 0.5 //分钟
+        const doms = {
+            typing: document.querySelector('.typing')
+        }
+        const clock = new Clock('.clock');
+
+        let urls = 'data.json'
+        let tipData = {}
+        let delay = 30000
+        let tiptimes = 0 //
+
+        //FIXME 定时重新获取数据
+        let promise = fetch(urls)
+            .then(res => {
+                if (res.ok) { return res.json() }
+                else { return {} }
+            }).then(data => {
+                tipData = data
+                currentData = getTypeData(tiptimes);
+                new Typer(currentData, '.typer')
+                delay = 3*60*1000 //3分钟
+            }).catch(err => { console.log(err); })
+
+
+
+        //Timer 30分钟_提示休息
+        const timerOf30 = function (delay) {
+            delay = delay * 60 * 1000;
+            return setInterval(() => {
+                // alert('超过30分钟了')
+                let data = getTypeData(tiptimes)
+                new Typer(data, '.typer')
+                tiptimes ++
+                if (tiptimes >= 3) {
+                    doms.typing.classList.add('fatal')
+                }
+            }, delay);
+        }
+        let t = timerOf30(timeOfAlert)
+
+
+
+        function getTypeData(times) {
+            console.log('times',times,'data',tipData);
+            return data = times >= 0 ? times >= 1 ? times > 2 ? tipData.fatal : tipData.danger : tipData.warn : tipData.normal
+        }
+    </script>
+</body>
+
+</html>
