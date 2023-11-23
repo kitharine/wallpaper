@@ -60,7 +60,7 @@ class Typer{
             this.el = document.querySelector(selector);
             this.startIndex = Math.floor(Math.random() * this.data.length);
             this.init()
-            console.log(this);
+            // console.log(this);
     }
     get currentStr(){
         if(Typer.instance){
